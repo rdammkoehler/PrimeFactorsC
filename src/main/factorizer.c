@@ -1,5 +1,4 @@
 #include "factorizer.h"
-#include <stdio.h>
 
 int *factors_of(unsigned int number)
 {
@@ -9,11 +8,10 @@ int *factors_of(unsigned int number)
     {
       if (number % i == 0)
 	{
-	  factors = realloc(factors, n+1);
+	  factors = realloc(factors, (n+2)*sizeof(int));
 	  factors[n++] = i;
 	}
     }
   factors[n] = number;
-  for(int i = 0; i < n; printf("%d, ",factors[i++]));
   return factors;
 }
