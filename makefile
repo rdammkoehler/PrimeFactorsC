@@ -8,6 +8,8 @@ SRC_FILES=src/test/test_main.c \
 	src/main/is_prime.c \
 	src/test/factorizer_tests.c \
 	src/main/factorizer.c \
+	src/test/prime_factors_tests.c \
+	src/main/prime_factors.c \
 	../Unity/extras/fixture/src/unity_fixture.c \
 	../Unity/src/unity.c
 INC_DIRS=-Isrc/main -I../Unity/src -I../Unity/extras/fixture/src
