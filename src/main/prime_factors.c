@@ -1,6 +1,4 @@
 #include "prime_factors.h"
-#include "factorizer.h"
-#include "is_prime.h"
 #include <stdlib.h>
 
 int *prime_factors_of(unsigned int number)
