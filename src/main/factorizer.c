@@ -1,4 +1,5 @@
 #include "factorizer.h"
+#include <stdlib.h>
 
 int *factors_of(unsigned int number)
 {
