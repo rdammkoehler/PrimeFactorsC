@@ -33,3 +33,4 @@ TEST_GROUP_RUNNER(Primes)
   RUN_TEST_CASE(Primes,FourIsntPrime);
   RUN_TEST_CASE(Primes,FiveIsPrime);
 }
+

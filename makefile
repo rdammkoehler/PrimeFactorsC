@@ -6,10 +6,10 @@ OUT_FILE=-o $(TARGET)
 SRC_FILES=src/test/test_main.c \
 	src/test/is_prime_tests.c \
 	src/main/is_prime.c \
-	../Unity/extras/fixture/src/unity_fixture.c \
-	../Unity/src/unity.c
+	../Unity/src/unity.c \
+	../Unity/extras/fixture/src/unity_fixture.c
 INC_DIRS=-Isrc/main -I../Unity/src -I../Unity/extras/fixture/src
-SYMBOLS=-DTEST -DUNITY_SUPPORT_64 -std=c99
+SYMBOLS=-DTEST -DUNITY_SUPPORT_64 -std=c99 -w
 LIBS=-lm
 
 CLEANUP = rm -f build/*.o ; rm -f $(TARGET)
