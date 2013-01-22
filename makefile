@@ -6,6 +6,7 @@ OUT_FILE=-o $(TARGET)
 SRC_FILES=src/test/test_main.c \
 	src/test/is_prime_tests.c \
 	src/main/is_prime.c \
+	src/test/factorize_tests.c \
 	../Unity/src/unity.c \
 	../Unity/extras/fixture/src/unity_fixture.c
 INC_DIRS=-Isrc/main -I../Unity/src -I../Unity/extras/fixture/src
