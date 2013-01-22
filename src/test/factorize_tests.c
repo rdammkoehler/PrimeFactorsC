@@ -1,4 +1,5 @@
 #include "unity_fixture.h"
+#include "factorizer.h"
 
 TEST_GROUP(Factorize);
 
@@ -8,7 +9,7 @@ TEST_TEAR_DOWN(Factorize) {}
 TEST(Factorize,FactorsOfOne)
 {
   int expected[] = { 1 };
-  int actual[] = { 1 };
+  int *actual = factors_of(1);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
 }
 
