@@ -29,6 +29,9 @@ TEST(Factorize,FactorsOfThree)
 
 TEST(Factorize,FactorsOfFour)
 {
+  int expected[] = { 1, 2, 4 };
+  int *actual = factors_of(4);
+  TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 3);
 }
 
 TEST(Factorize,FactorsOfFive)
@@ -49,5 +52,6 @@ TEST_GROUP_RUNNER(Factorize)
   RUN_TEST_CASE(Factorize,FactorsOfOne);
   RUN_TEST_CASE(Factorize,FactorsOfTwo);
   RUN_TEST_CASE(Factorize,FactorsOfThree);
+  RUN_TEST_CASE(Factorize,FactorsOfFour);
 }
 
