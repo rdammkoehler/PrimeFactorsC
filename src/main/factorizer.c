@@ -9,7 +9,7 @@ int *factors_of(unsigned int number)
     {
       if (number % i == 0)
 	{
-	  factors = realloc(factors, n+1);
+	  factors = realloc(factors, n+2);
 	  factors[n++] = i;
 	}
     }

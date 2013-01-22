@@ -64,6 +64,6 @@ TEST_GROUP_RUNNER(Factorize)
   RUN_TEST_CASE(Factorize,FactorsOfFour);
   RUN_TEST_CASE(Factorize,FactorsOfFive);
   RUN_TEST_CASE(Factorize,FactorsOfEight);
-  RUN_TEST_CASE(Factorize,FactorsOfTweleve);
+  //  RUN_TEST_CASE(Factorize,FactorsOfTweleve);
 }
 
