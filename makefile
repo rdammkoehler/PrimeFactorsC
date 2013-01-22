@@ -4,10 +4,6 @@ TARGET_EXTENSION=.out
 TARGET = $(TARGET_BASE)$(TARGET_EXTENSION)
 OUT_FILE=-o $(TARGET)
 SRC_FILES=src/test/test_main.c \
-	src/test/is_prime_tests.c \
-	src/main/is_prime.c \
-	src/test/factorize_tests.c \
-	src/main/factorizer.c \
 	src/test/prime_factors_tests.c \
 	src/main/prime_factors.c \
 	../Unity/src/unity.c \

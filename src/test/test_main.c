@@ -2,8 +2,6 @@
 
 static void RunAllTests(void)
 {
-  RUN_TEST_GROUP(Primes);
-  RUN_TEST_GROUP(Factorize);
   RUN_TEST_GROUP(PrimeFactors);
 }
 
