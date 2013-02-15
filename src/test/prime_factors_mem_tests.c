@@ -1,5 +1,53 @@
 #include "unity_fixture.h"
-#include "prime_factors.h"
+
+/*
+  Unity detects a memory leak if I don't free what I malloc in SUT -- TRUE
+  
+  When the SUT is inside of the test code, including <stdlib.h>
+  is not necessary -- TRUE
+  
+  When the SUT is inside of the test code, I can inclue <stdlib.h> -- TRUE
+  
+  When the SUT is inside of the test code AND I use <stdlib.h> the behavior
+  does not change -- TRUE
+  
+  On Windows, if I include <stdlib.h> I get a macro define issue 
+  around malloc -- TRUE
+
+ */
+
+// *************************** SUT
+int alt_prime_factors_of(unsigned int number, int ** prime_factors) {
+  (*prime_factors) = (number==1)?NULL:(int*)malloc(0);
+  int count = 0;
+  for( int candidate = 2; number > 1; candidate++ )
+    {
+      for(; number % candidate == 0; number /= candidate) {
+	(*prime_factors) = realloc((*prime_factors), (count+1)*sizeof(int));
+	(*prime_factors)[count] = candidate;
+	count++;
+      }
+    }
+  return count;
+}
+
+int *prime_factors_of(unsigned int number)
+{
+  int *prime_factors = (number==1)?NULL:malloc(0);
+  int count = 0;
+  for( int candidate = 2; number > 1; candidate++ )
+    {
+      for(; number % candidate == 0; number /= candidate) {
+	prime_factors = realloc(prime_factors, (count+1)*sizeof(int));
+	prime_factors[count] = candidate;
+	count++;
+      }
+    }
+  return prime_factors;
+}
+
+
+// *************************** TESTS
 
 TEST_GROUP(PrimeFactors);
 
@@ -26,6 +74,7 @@ TEST(PrimeFactors,FactorsOfTwo)
   int expected[] = { 2 };
   int *actual = prime_factors_of(2);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
+  free(actual);
 }
 
 TEST(PrimeFactors, FactorsOfTwo_Alt)
@@ -35,6 +84,7 @@ TEST(PrimeFactors, FactorsOfTwo_Alt)
   int count = alt_prime_factors_of(2, &actual);
   TEST_ASSERT_EQUAL(1,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfThree)
@@ -42,6 +92,7 @@ TEST(PrimeFactors,FactorsOfThree)
   int expected[] = { 3 };
   int *actual = prime_factors_of(3);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfThree_Alt)
@@ -51,6 +102,7 @@ TEST(PrimeFactors,FactorsOfThree_Alt)
   int count = alt_prime_factors_of(3, &actual);
   TEST_ASSERT_EQUAL(1,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFour)
@@ -58,6 +110,7 @@ TEST(PrimeFactors,FactorsOfFour)
   int expected[] = { 2, 2 };
   int *actual = prime_factors_of(4);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 2);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFour_Alt)
@@ -67,6 +120,7 @@ TEST(PrimeFactors,FactorsOfFour_Alt)
   int count = alt_prime_factors_of(4, &actual);
   TEST_ASSERT_EQUAL(2,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFive)
@@ -74,6 +128,7 @@ TEST(PrimeFactors,FactorsOfFive)
   int expected[] = { 5 };
   int *actual = prime_factors_of(5);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFive_Alt)
@@ -83,6 +138,7 @@ TEST(PrimeFactors,FactorsOfFive_Alt)
   int count = alt_prime_factors_of(5, &actual);
   TEST_ASSERT_EQUAL(1, count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfEight)
@@ -90,6 +146,7 @@ TEST(PrimeFactors,FactorsOfEight)
   int expected[] = { 2, 2, 2 };
   int *actual = prime_factors_of(8);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 3);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfEight_Alt)
@@ -99,6 +156,7 @@ TEST(PrimeFactors,FactorsOfEight_Alt)
   int count = alt_prime_factors_of(8, &actual);
   TEST_ASSERT_EQUAL(3, count);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTweleve)
@@ -106,6 +164,7 @@ TEST(PrimeFactors,FactorsOfTweleve)
   int expected[] = { 2, 2, 3 };
   int *actual = prime_factors_of(12);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 3);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTweleve_Alt)
@@ -115,6 +174,7 @@ TEST(PrimeFactors,FactorsOfTweleve_Alt)
   int count = alt_prime_factors_of(12, &actual);
   TEST_ASSERT_EQUAL(3, count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTwentyFour)
@@ -122,6 +182,7 @@ TEST(PrimeFactors,FactorsOfTwentyFour)
   int expected[] = { 2, 2, 2, 3 };
   int *actual = prime_factors_of(24);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 4);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTwentyFour_Alt)
@@ -131,6 +192,7 @@ TEST(PrimeFactors,FactorsOfTwentyFour_Alt)
   int count = alt_prime_factors_of(24, &actual);
   TEST_ASSERT_EQUAL(4, count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST_GROUP_RUNNER(PrimeFactors)

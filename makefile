@@ -4,8 +4,7 @@ TARGET_EXTENSION=.out
 TARGET = $(TARGET_BASE)$(TARGET_EXTENSION)
 OUT_FILE=-o $(TARGET)
 SRC_FILES=src/test/test_main.c \
-	src/test/prime_factors_tests.c \
-	src/main/prime_factors.c \
+	src/test/prime_factors_mem_tests.c \
 	../Unity/src/unity.c \
 	../Unity/extras/fixture/src/unity_fixture.c
 INC_DIRS=-Isrc/main -I../Unity/src -I../Unity/extras/fixture/src
