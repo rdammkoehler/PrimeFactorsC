@@ -1,7 +1,7 @@
 #include "prime_factors.h"
 #include <stdlib.h>
 
-int alt_prime_factors_of(unsigned int number, int ** prime_factors) {
+int alt_prime_factors_of(int number, int ** prime_factors) {
   (*prime_factors) = (number==1)?NULL:(int*)malloc(0);
   int count = 0;
   for( int candidate = 2; number > 1; candidate++ )
@@ -15,7 +15,7 @@ int alt_prime_factors_of(unsigned int number, int ** prime_factors) {
   return count;
 }
 
-int *prime_factors_of(unsigned int number)
+int *prime_factors_of(int number)
 {
   int *prime_factors = (number==1)?NULL:(int*)malloc(0);
   int count = 0;
