@@ -35,6 +35,7 @@ TEST(PrimeFactors, FactorsOfTwo_Alt)
   int count = alt_prime_factors_of(2, &actual);
   TEST_ASSERT_EQUAL(1,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfThree)
