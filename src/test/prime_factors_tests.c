@@ -1,6 +1,8 @@
 #include "unity_fixture.h"
 #include "prime_factors.h"
 
+#undef free
+
 TEST_GROUP(PrimeFactors);
 
 TEST_SETUP(PrimeFactors) {}
