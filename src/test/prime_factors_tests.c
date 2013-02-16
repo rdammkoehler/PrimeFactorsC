@@ -1,11 +1,11 @@
 #include "unity_fixture.h"
+#undef free // because we don't want Unity's version of free
 #include "prime_factors.h"
 
 TEST_GROUP(PrimeFactors);
 
 TEST_SETUP(PrimeFactors) {}
 TEST_TEAR_DOWN(PrimeFactors) {}
-
 
 TEST(PrimeFactors,FactorsOfOne)
 {
@@ -25,16 +25,18 @@ TEST(PrimeFactors,FactorsOfTwo)
 {
   int expected[] = { 2 };
   int *actual = prime_factors_of(2);
-  TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
+  TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, 1);
+  free(actual);
 }
 
 TEST(PrimeFactors, FactorsOfTwo_Alt)
 {
   int expected[] = { 2 };
-  int *actual = NULL;
+  int *actual;
   int count = alt_prime_factors_of(2, &actual);
   TEST_ASSERT_EQUAL(1,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual); 
 }
 
 TEST(PrimeFactors,FactorsOfThree)
@@ -42,6 +44,7 @@ TEST(PrimeFactors,FactorsOfThree)
   int expected[] = { 3 };
   int *actual = prime_factors_of(3);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfThree_Alt)
@@ -51,6 +54,7 @@ TEST(PrimeFactors,FactorsOfThree_Alt)
   int count = alt_prime_factors_of(3, &actual);
   TEST_ASSERT_EQUAL(1,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFour)
@@ -58,6 +62,7 @@ TEST(PrimeFactors,FactorsOfFour)
   int expected[] = { 2, 2 };
   int *actual = prime_factors_of(4);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 2);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFour_Alt)
@@ -67,6 +72,7 @@ TEST(PrimeFactors,FactorsOfFour_Alt)
   int count = alt_prime_factors_of(4, &actual);
   TEST_ASSERT_EQUAL(2,count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFive)
@@ -74,6 +80,7 @@ TEST(PrimeFactors,FactorsOfFive)
   int expected[] = { 5 };
   int *actual = prime_factors_of(5);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 1);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfFive_Alt)
@@ -83,6 +90,7 @@ TEST(PrimeFactors,FactorsOfFive_Alt)
   int count = alt_prime_factors_of(5, &actual);
   TEST_ASSERT_EQUAL(1, count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfEight)
@@ -90,6 +98,7 @@ TEST(PrimeFactors,FactorsOfEight)
   int expected[] = { 2, 2, 2 };
   int *actual = prime_factors_of(8);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 3);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfEight_Alt)
@@ -99,6 +108,7 @@ TEST(PrimeFactors,FactorsOfEight_Alt)
   int count = alt_prime_factors_of(8, &actual);
   TEST_ASSERT_EQUAL(3, count);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTweleve)
@@ -106,6 +116,7 @@ TEST(PrimeFactors,FactorsOfTweleve)
   int expected[] = { 2, 2, 3 };
   int *actual = prime_factors_of(12);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 3);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTweleve_Alt)
@@ -115,6 +126,7 @@ TEST(PrimeFactors,FactorsOfTweleve_Alt)
   int count = alt_prime_factors_of(12, &actual);
   TEST_ASSERT_EQUAL(3, count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTwentyFour)
@@ -122,6 +134,7 @@ TEST(PrimeFactors,FactorsOfTwentyFour)
   int expected[] = { 2, 2, 2, 3 };
   int *actual = prime_factors_of(24);
   TEST_ASSERT_EQUAL_UINT_ARRAY(expected, actual, 4);
+  free(actual);
 }
 
 TEST(PrimeFactors,FactorsOfTwentyFour_Alt)
@@ -131,6 +144,7 @@ TEST(PrimeFactors,FactorsOfTwentyFour_Alt)
   int count = alt_prime_factors_of(24, &actual);
   TEST_ASSERT_EQUAL(4, count);
   TEST_ASSERT_EQUAL_INT_ARRAY(expected, actual, count);
+  free(actual);
 }
 
 TEST_GROUP_RUNNER(PrimeFactors)
